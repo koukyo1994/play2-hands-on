@@ -1,0 +1,19 @@
+version: '2.0'
+
+services:
+  mysql:
+    container_name: play2-hands-on_mysql
+    image: mysql/mysql-server:5.7
+    ports:
+    - "3306:3306"
+    command: [
+      "mysqld",
+      "--character-set-server=utf8mb4",
+      "--lower_case_table_names=1",
+      "--sql_mode=TRADITIONAL",
+      "--explicit_defaults_for_timestamp=ON"
+    ]
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+    - ./mysql/:/docker-entrypoint-initdb.d
